@@ -13,6 +13,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -117,9 +118,9 @@ class AdminController extends Controller
 
     }
     
-    public function getAdmin(Request $payload)
+    public function getAdmin(Request $request)
     {
-        $admin = $payload->user();
+        $admin = Auth::user(); // Use Auth facade to get the authenticated user
         return new AdminResource($admin);
     }
     public function create(CreateAdminRequest $payload) 
@@ -153,6 +154,19 @@ class AdminController extends Controller
         } else {
             return response()->json([
                 'message' => 'Admin Not Found'
+            ]);
+        }
+    }
+
+    public function read_admin_questions_params($admin_Id) 
+    {
+        $admins = Admin::with('questions')->get();
+
+        if ($admins->count() > 0) {
+            return response()->json(['admins' => $admins]);
+        } else {
+            return response()->json([
+                'admins' => 'No Admins Found'
             ]);
         }
     }

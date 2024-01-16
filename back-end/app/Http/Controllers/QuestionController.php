@@ -72,6 +72,7 @@ class QuestionController extends Controller
             ]);
         }
     }
+    
 
     public function update(Request $request, $q_id, $a_id) 
     {

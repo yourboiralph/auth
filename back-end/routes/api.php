@@ -54,6 +54,7 @@ Route::post('admins', [AdminController::class, 'create']);
 Route::get('admins/{id}', [AdminController::class, 'read']);
 Route::put('admins/{id}/edit', [AdminController::class, 'update']);
 Route::delete('admins/{id}/delete', [AdminController::class, 'delete']);
+Route::get('admins-questions/{adminId}', [AdminController::class, 'read_admin_questions_params']);
 Route::get('admins-questions', [AdminController::class, 'read_admin_questions']); // display questions made by admins
 Route::get('admins-options', [AdminController::class, 'read_admin_options']); // display options made by admins
 
