@@ -9,7 +9,6 @@
           <th>Message</th>
           <th>Range Start</th>
           <th>Range End</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -20,11 +19,6 @@
           <td>{{ t.message }}</td>
           <td>{{ t.scoreRangeStart }}</td>
           <td>{{ t.scoreRangeEnd }}</td>
-          <td>
-            <button class="action-btn view" @click="viewTaker(t.id)">View</button>
-            <button class="action-btn edit" @click="editTaker(t.id)">Edit</button>
-            <button class="action-btn delete" @click="deleteTaker(t.id)">Delete</button>
-          </td>
         </tr>
       </tbody>
     </table>

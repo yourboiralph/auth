@@ -22,8 +22,6 @@
           <td>{{ t.total_score }}</td>
           <td>{{ t.depression_type.type }}</td>
           <td>
-            <button class="action-btn view" @click="viewTaker(t.id)">View</button>
-            <button class="action-btn edit" @click="editTaker(t.id)">Edit</button>
             <button class="action-btn delete" @click="deleteTaker(t.id)">Delete</button>
           </td>
         </tr>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p>Takers List</p>
+      <p>Admins List</p>
   
       <table>
         <thead>
@@ -21,8 +21,6 @@
             <td>{{ t.email }}</td>
             <td>{{ t.is_verified ? 'Verified' : 'Not Verified' }}</td>
             <td>
-              <button class="action-btn view" @click="viewTaker(t.id)">View</button>
-              <button class="action-btn edit" @click="editTaker(t.id)">Edit</button>
               <button class="action-btn delete" @click="deleteTaker(t.id)">Delete</button>
             </td>
           </tr>

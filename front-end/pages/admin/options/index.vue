@@ -9,7 +9,6 @@
           <th>Admin</th>
           <th>Question</th>
           <th>Score</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -24,11 +23,6 @@
               <nuxt-link :to="'/questions/' + t.id">{{ `${t.questionID}` }}</nuxt-link>
           </td>
           <td>{{ t.score }}</td>
-          <td>
-            <button class="action-btn view" @click="viewTaker(t.id)">View</button>
-            <button class="action-btn edit" @click="editTaker(t.id)">Edit</button>
-            <button class="action-btn delete" @click="deleteTaker(t.id)">Delete</button>
-          </td>
         </tr>
       </tbody>
     </table>

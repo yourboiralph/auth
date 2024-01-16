@@ -1,7 +1,7 @@
 <!-- layouts/admin-layout.vue -->
 
 <template>
-    <div>
+    <div class="pt-10">
       <header>
         <div>
           <p>Hi There {{ data.admin.first_name }}</p>

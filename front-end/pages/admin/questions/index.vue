@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <p>Questions List</p>
-
+  <div class="pt-10">
+    <p>Questions List <button class="action-btn view" @click="navigateTo('/admin/questions/createQuestions')">Add</button></p>
     <table>
       <thead>
         <tr>
@@ -16,12 +15,11 @@
             <nuxt-link :to="'/questions/' + t.id">{{ `${t.question}` }}</nuxt-link>
           </td>
           <td>
-              <nuxt-link :to="'/admins/' + t.id">{{ `${t.adminID}` }}</nuxt-link>
+            <nuxt-link :to="'/admins/' + t.id">{{ `${t.adminID}` }}</nuxt-link>
           </td>
           <td>
-            <button class="action-btn view" @click="viewTaker(t.id)">View</button>
-            <button class="action-btn edit" @click="editTaker(t.id)">Edit</button>
-            <button class="action-btn delete" @click="deleteTaker(t.id)">Delete</button>
+            <button class="action-btn edit" @click="editQuestions(t.id, t.adminID)">Edit</button>
+            <button class="action-btn delete" @click="deleteQuestions(t.id, t.adminID)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -45,7 +43,37 @@ export default {
       // You might want to handle errors more gracefully, for example by showing an error message to the user
     }
   },
+  methods: {
+    async editQuestions(questionId, adminId) {
+  try {
+    // Fetch the specific question data
+    const { data: questionData } = await useFetch(`http://127.0.0.1:8000/api/questions/${questionId}`);
+    
+    // Navigate to the edit page with the question data
+    this.$router.push({
+      path: '/admin/questions/editQuestions',
+      query: { questionId, adminId, questionData }
+    });
+  } catch (error) {
+    console.error('Error editing:', error);
+    // You might want to handle errors more gracefully, for example by showing an error message to the user
+  }
+},
+    async deleteQuestions(questionId, adminId) {
+      try {
+        // Make a DELETE request to the API endpoint
+        await fetch(`http://127.0.0.1:8000/api/questions/${questionId}/${adminId}/delete`, {
+          method: 'DELETE',
+        });
 
+        // Refresh the current route
+        this.$router.go();
+      } catch (error) {
+        console.error('Error deleting:', error);
+        // You might want to handle errors more gracefully, for example by showing an error message to the user
+      }
+    },
+  },
 };
 </script>
 

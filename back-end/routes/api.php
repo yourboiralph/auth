@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->post('/send-result-email', [TakerController::
 
 //Takers
 Route::middleware(['auth:sanctum','verified'])->get('takers', [TakerController::class, 'index']);
+Route::get('takers', [TakerController::class, 'index']);
 Route::post('takers', [TakerController::class, 'create']); // create takers
 Route::get('takers/{id}', [TakerController::class, 'read']);
 Route::put('takers/{id}/edit', [TakerController::class, 'update']);
